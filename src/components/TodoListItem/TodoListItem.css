@@ -1,0 +1,109 @@
+.slide {
+  position: relative;
+  /* animation-fill-mode: forwards; */
+}
+
+.slide-right {
+  animation: slideright ease-out 0.5s;
+  opacity: 0;
+  left: 25%;
+  max-height: 0px;
+  padding-bottom: 0rem;
+  padding-top: 0rem;
+}
+.slide-left {
+  animation: slideleft ease-out 0.5s;
+  opacity: 0;
+  right: 25%;
+  max-height: 0px;
+  padding-bottom: 0rem;
+  padding-top: 0rem;
+}
+.slide-in-right {
+  animation: slideinright ease-out 0.5s;
+}
+.slide-in-left {
+  animation: slideinleft ease-out 0.5s;
+}
+
+@keyframes slideright {
+  0% {
+    left: 0;
+    opacity: 1;
+    max-height: 400px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+  25% {
+    left: -5%;
+    max-height: 400px;
+  }
+  100% {
+    left: 25%;
+    max-height: 0px;
+    opacity: 0;
+    padding-bottom: 0rem;
+    padding-top: 0rem;
+  }
+}
+
+@keyframes slideleft {
+  0% {
+    right: 0;
+    opacity: 1;
+    max-height: 400px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+  25% {
+    right: -5%;
+    max-height: 400px;
+  }
+  100% {
+    right: 25%;
+    max-height: 0px;
+    opacity: 0;
+    padding-bottom: 0rem;
+    padding-top: 0rem;
+  }
+}
+@keyframes slideinleft {
+  0% {
+    right: 25%;
+    max-height: 0px;
+    opacity: 0;
+    padding-bottom: 0rem;
+    padding-top: 0rem;
+  }
+  25% {
+    right: -5%;
+    max-height: 400px;
+  }
+  100% {
+    right: 0;
+    opacity: 1;
+    max-height: 400px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+}
+@keyframes slideinright {
+  0% {
+    left: 25%;
+    max-height: 0px;
+    opacity: 0;
+    padding-bottom: 0rem;
+    padding-top: 0rem;
+  }
+  25% {
+    left: -5%;
+    max-height: 400px;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+    max-height: 400px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+}
