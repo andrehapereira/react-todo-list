@@ -1,24 +1,22 @@
 import "./TodoListItem.css";
 
 import { useEffect, useState } from "react";
-import { Checkmark } from "../../icons/Checkmark";
+import { Checkmark } from '../../icons/Checkmark';
 import { DeleteBucket } from "../../icons/DeleteBucket";
 import { Undo } from "../../icons/Undo";
-import { Todo, TodoStatus } from "../../models/Todo";
+import { Todo, TodoAnimation, TodoConfig, TodoStatus } from "../../models/Todo";
 import { ActionItem } from "./ActionButton/ActionButton";
 
 export interface TodoListItemProps {
   todo: Todo;
-  onMoveToDone: (todo: Todo) => void;
-  onMoveToTodo: (todo: Todo) => void;
+  onMove: (todo: Todo) => void;
   onDelete: (id: string) => void;
   skipAnimation?: boolean;
 }
 
 export const TodoListItem = ({
   todo,
-  onMoveToDone,
-  onMoveToTodo,
+  onMove,
   onDelete,
   skipAnimation = false,
 }: TodoListItemProps) => {
@@ -34,7 +32,7 @@ export const TodoListItem = ({
   }, []);
 
   const animate = (
-    cls: "slide-right" | "slide-left" | "slide-in-right" | "slide-in-left"
+    cls: TodoAnimation
   ) => {
     return new Promise((resolve) => {
       setAnimationClass(cls);
@@ -45,6 +43,21 @@ export const TodoListItem = ({
       }, 600);
     });
   };
+
+  const todoConfig: TodoConfig = {
+    [TodoStatus.TODO]: {
+      variant: 'success',
+      title: `Move ${todo.title} to done`,
+      animation: 'slide-right',
+      icon: <Checkmark/>
+    },
+    [TodoStatus.DONE]: {
+      variant: 'dark',
+      title: `Move ${todo.title} back to todo`,
+      animation: 'slide-left',
+      icon: <Undo/>
+    }
+  }
 
   return (
     <div
@@ -58,31 +71,17 @@ export const TodoListItem = ({
         {todo.title}
       </div>
       <div className="flex gap-3">
-        {todo.status === "TODO" ? (
-          <ActionItem
-            variant="success"
-            title={`Move ${todo.title} to done`}
-            action={() => {
-              animate("slide-right").then(() => {
-                onMoveToDone(todo);
-              });
-            }}
-          >
-            <Checkmark/>
-          </ActionItem>
-        ) : (
-          <ActionItem
-            variant="dark"
-            title={`Move ${todo.title} back to todo`}
-            action={() => {
-              animate("slide-left").then(() => {
-                onMoveToTodo(todo);
-              });
-            }}
-          >
-            <Undo/>
-          </ActionItem>
-        )}
+        <ActionItem
+          variant={todoConfig[todo.status].variant}
+          title={todoConfig[todo.status].title}
+          action={() => {
+            animate(todoConfig[todo.status].animation).then(() => {
+              onMove(todo);
+            });
+          }}
+        >
+          {todoConfig[todo.status].icon}
+        </ActionItem>
         <ActionItem
           variant="danger"
           title={`Delete ${todo.title}`}

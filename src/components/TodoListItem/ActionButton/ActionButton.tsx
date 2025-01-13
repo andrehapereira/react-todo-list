@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
+import { TodoActionVariant } from "../../../models/Todo";
 export interface ActionItemProps extends PropsWithChildren {
-  variant: "danger" | "success" | "dark";
+  variant: TodoActionVariant;
   title?: string;
   action: () => void;
 }

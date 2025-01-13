@@ -12,3 +12,20 @@ export interface Todo {
 }
 
 export type Todos = Todo[];
+
+export type TodoAnimation =
+  | "slide-right"
+  | "slide-left"
+  | "slide-in-right"
+  | "slide-in-left";
+
+export type TodoActionVariant = "success" | "danger" | "dark";
+
+export type TodoConfig = {
+  [key in `${TodoStatus}`]: {
+    variant: TodoActionVariant;
+    title: string;
+    animation: TodoAnimation;
+    icon: JSX.Element;
+  };
+};
