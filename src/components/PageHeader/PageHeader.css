@@ -1,3 +1,9 @@
 section .background-container {
   opacity: 0.4;
+  overflow: hidden;
+}
+
+section .background-container img {
+  object-fit: cover;
+  height: 100%;
 }

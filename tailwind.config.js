@@ -3,7 +3,7 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./index.html"],
   theme: {
     extend: {
-      maxHeight: {
+      height: {
         "page-header": "250px",
       },
     },

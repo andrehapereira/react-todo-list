@@ -10,10 +10,13 @@ export const PageHeader = ({ title, background }: PageHeaderProps) => {
   return (
     <>
       <section className="relative w-full">
-        <div className="background-container w-full m-h-page-header">
+        <div className="background-container w-full h-page-header">
           <img className="w-full" src={bg} alt={title} />
         </div>
+        <div className="header-content max-w-screen-2xl mx-auto">
         <h1 className="absolute bottom-0 ps-5"> {title}</h1>
+
+        </div>
       </section>
     </>
   );
