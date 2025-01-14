@@ -12,7 +12,7 @@ export const PageHeader = ({ title, background }: PageHeaderProps) => {
   return (
     <>
       <section className="relative w-full">
-        <div className="background-container w-full h-page-header">
+        <div className="background-container w-full h-page-header animate-pulse bg-gray-300">
           <img className="w-full" src={bg} alt={title} />
         </div>
         <div className="top-0 absolute header-content w-full h-full">

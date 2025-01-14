@@ -1,19 +1,24 @@
 // export type TodoListProps = {};
 
-import { useContext, useEffect, useState } from "react";
-import { HeartEyesIcon } from '../../icons/HeartEyesIcon';
+import { SyntheticEvent, useContext, useEffect, useState } from "react";
+import { HeartEyesIcon } from "../../icons/HeartEyesIcon";
 import { SadFaceIcon } from "../../icons/SadFaceIcon";
 import { Todo, TodoStatus, Todos } from "../../models/Todo";
 import { ServicesContext } from "../../services/ServicesProvider";
 import { EmptyStateComponent } from "../EmptyState/EmptyState";
 import { LoadingSkeleton } from "../LoadingSkeleton/LoadingSkeleton";
 import { TodoList } from "../TodoList/TodoList";
+import { v4 as generateId } from "uuid";
+import { ListIcon } from "../../icons/ListIcon";
 
 export const TodoListPageContainer = () => {
   const { todosService } = useContext(ServicesContext);
   const [loading, setLoading] = useState<boolean>(true);
   const [doneTodos, setDoneTodos] = useState<Todos>([]);
   const [pendingTodos, setPendingTodos] = useState<Todos>([]);
+  const [formData, setFormData] = useState<{ todoName: string }>({
+    todoName: "",
+  });
 
   useEffect(() => {
     todosService
@@ -42,23 +47,99 @@ export const TodoListPageContainer = () => {
     setDoneTodos(doneTodos.filter((item) => item.id !== id));
   };
 
-  const doneEmptyState = <EmptyStateComponent icon={<SadFaceIcon width="3rem" height="3rem"/>} title="Oh no!" description="Let's get some work done. I promise there will be cookies in the end."/>
+  const createTodo = (ev: SyntheticEvent) => {
+    ev.preventDefault();
+    if (!formData.todoName) {
+      return;
+    }
+    setPendingTodos([
+      ...pendingTodos,
+      {
+        id: generateId(),
+        title: formData.todoName,
+        status: TodoStatus.TODO,
+        details: "",
+        priority: 0,
+      },
+    ]);
+    setFormData({ todoName: "" });
+  };
 
-  const pendingEmptyState = <EmptyStateComponent icon={<HeartEyesIcon width="3rem" height="3rem"/>} title="Wooo!" description="You've completed all taks! Wonderful job. Cookie time!"/>
+  const doneEmptyState = (
+    <EmptyStateComponent
+      icon={<SadFaceIcon width="3rem" height="3rem" />}
+      title="Oh no!"
+      description="Let's get some work done. I promise there will be cookies in the end."
+    />
+  );
+
+  const pendingEmptyState = (
+    <EmptyStateComponent
+      icon={<HeartEyesIcon width="3rem" height="3rem" />}
+      title="Wooo!"
+      description="You've completed all taks! Wonderful job. Cookie time!"
+    />
+  );
+
+  const listsEmpty = () => {
+    return pendingTodos.length === 0 && doneTodos.length === 0;
+  };
 
   return (
     <section>
       {loading ? (
         <LoadingSkeleton></LoadingSkeleton>
       ) : (
-        <div className="flex flex-col lg:flex-row p-4 gap-8">
-          <div className="flex-1">
-            <TodoList title="Pending:" todos={pendingTodos} onMove={moveToDone} onDelete={deleteTodo} emptyState={pendingEmptyState}/>
+        <>
+          <form
+            className="flex gap-4 px-4 pt-8 flex-col sm:flex-row"
+            onSubmit={createTodo}
+          >
+            <input
+              type="text"
+              value={formData.todoName}
+              onChange={(e) => setFormData({ todoName: e.target.value })}
+              className="flex-1 shadow appearance-none border rounded p-3 px-3 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="What are you doing next?"
+            />
+            <button
+              className="cursor-pointer p-3 px-6 bg-transparent hover:bg-black hover:text-white border border-solid rounded-md disabled:bg-transparent disabled:text-neutral-400"
+              disabled={!formData.todoName}
+            >
+              Add
+            </button>
+          </form>
+          <div className="flex flex-col lg:flex-row p-4 gap-8">
+            {listsEmpty() ? (
+              <EmptyStateComponent
+                icon={<ListIcon width="3rem" height="3rem" />}
+                title="Let's get working!"
+                description="Add some tasks via the above form and get some work done!"
+              ></EmptyStateComponent>
+            ) : (
+              <>
+                <div className="flex-1">
+                  <TodoList
+                    title="Pending:"
+                    todos={pendingTodos}
+                    onMove={moveToDone}
+                    onDelete={deleteTodo}
+                    emptyState={pendingEmptyState}
+                  />
+                </div>
+                <div className="flex-1">
+                  <TodoList
+                    title="Done:"
+                    todos={doneTodos}
+                    onMove={moveToPending}
+                    onDelete={deleteTodo}
+                    emptyState={doneEmptyState}
+                  />
+                </div>
+              </>
+            )}
           </div>
-          <div className="flex-1">
-            <TodoList title="Done:" todos={doneTodos} onMove={moveToPending} onDelete={deleteTodo} emptyState={doneEmptyState}/>
-          </div>
-        </div>
+        </>
       )}
     </section>
   );
