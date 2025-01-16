@@ -1,6 +1,6 @@
 import "./TodoListItemComponent.css";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CheckmarkIcon } from "../../icons/CheckmarkIcon";
 import { DeleteBucketIcon } from "../../icons/DeleteBucketIcon";
 import { UndoIcon } from "../../icons/UndoIcon";
@@ -22,14 +22,14 @@ export const TodoListItemComponent = ({
 }: TodoListItemComponentProps) => {
   const [animationClass, setAnimationClass] = useState("");
 
-  useEffect(() => {
-    if (skipAnimation) {
-      return;
-    }
-    animate(
-      todo.status === TodoStatus.DONE ? "slide-in-left" : "slide-in-right"
-    );
-  }, []);
+  // useEffect(() => {
+  //   if (skipAnimation) {
+  //     return;
+  //   }
+  //   animate(
+  //     todo.status === TodoStatus.DONE ? "slide-in-left" : "slide-in-right"
+  //   );
+  // }, []);
 
   const animate = (cls: TodoAnimation) => {
     return new Promise((resolve) => {
@@ -59,7 +59,7 @@ export const TodoListItemComponent = ({
 
   return (
     <div
-      className={`flex shadow-md px-8 py-5 my-2 rounded-xl border-neutral-100 border border-solid slide ${animationClass}`}
+      className={`flex bg-white shadow-md px-8 py-5 my-2 rounded-xl border-neutral-100 border border-solid slide ${animationClass}`}
     >
       <div
         className={`flex flex-1 items-center ${

@@ -4,7 +4,7 @@
     "title": "Wash the dishes",
     "details": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus elit orci. Duis eu leo augue. Suspendisse vitae mollis tortor. Nulla ullamcorper convallis consectetur. Vivamus bibendum nec nunc non hendrerit. Quisque condimentum, turpis ac congue pharetra, risus libero varius justo, a aliquet purus sapien sit amet orci. Phasellus arcu nibh, facilisis sed semper eget, auctor et massa. Nullam massa velit, dictum et massa sit amet, gravida condimentum ex. Donec tristique vehicula ligula, id tincidunt felis tincidunt vel.</p><p></p><p>Nullam vel turpis nec nisl facilisis euismod. Curabitur purus lectus, euismod at neque ac, efficitur volutpat risus. Donec lectus elit, pulvinar et magna vel, accumsan posuere purus. Vivamus tempus bibendum ex vitae fringilla. Pellentesque dignissim hendrerit ex, nec egestas sapien sollicitudin a. Curabitur non purus quis tortor commodo sagittis eget quis turpis. Etiam id laoreet urna. Aliquam a ultrices lectus. In vehicula magna vel ex elementum rutrum. Aenean vitae lorem massa. Integer vel malesuada nisl. Vivamus mollis ante eu neque dapibus, efficitur aliquet ex pharetra. Aliquam viverra ultricies purus quis commodo. Mauris pharetra est ut nisl imperdiet pellentesque. Ut a lorem lorem.</p>",
     "status": "TODO",
-    "priority": 2
+    "priority": 0
   },
   {
     "id": "2",
@@ -18,14 +18,14 @@
     "title": "Walk the dog",
     "details": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus elit orci. Duis eu leo augue. Suspendisse vitae mollis tortor. Nulla ullamcorper convallis consectetur. Vivamus bibendum nec nunc non hendrerit. Quisque condimentum, turpis ac congue pharetra, risus libero varius justo, a aliquet purus sapien sit amet orci. Phasellus arcu nibh, facilisis sed semper eget, auctor et massa. Nullam massa velit, dictum et massa sit amet, gravida condimentum ex. Donec tristique vehicula ligula, id tincidunt felis tincidunt vel.</p><p></p><p>Nullam vel turpis nec nisl facilisis euismod. Curabitur purus lectus, euismod at neque ac, efficitur volutpat risus. Donec lectus elit, pulvinar et magna vel, accumsan posuere purus. Vivamus tempus bibendum ex vitae fringilla. Pellentesque dignissim hendrerit ex, nec egestas sapien sollicitudin a. Curabitur non purus quis tortor commodo sagittis eget quis turpis. Etiam id laoreet urna. Aliquam a ultrices lectus. In vehicula magna vel ex elementum rutrum. Aenean vitae lorem massa. Integer vel malesuada nisl. Vivamus mollis ante eu neque dapibus, efficitur aliquet ex pharetra. Aliquam viverra ultricies purus quis commodo. Mauris pharetra est ut nisl imperdiet pellentesque. Ut a lorem lorem.</p>",
     "status": "TODO",
-    "priority": 3
+    "priority": 1
   },
   {
     "id": "4",
     "title": "Prepare dinner",
     "details": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus elit orci. Duis eu leo augue. Suspendisse vitae mollis tortor. Nulla ullamcorper convallis consectetur. Vivamus bibendum nec nunc non hendrerit. Quisque condimentum, turpis ac congue pharetra, risus libero varius justo, a aliquet purus sapien sit amet orci. Phasellus arcu nibh, facilisis sed semper eget, auctor et massa. Nullam massa velit, dictum et massa sit amet, gravida condimentum ex. Donec tristique vehicula ligula, id tincidunt felis tincidunt vel.</p><p></p><p>Nullam vel turpis nec nisl facilisis euismod. Curabitur purus lectus, euismod at neque ac, efficitur volutpat risus. Donec lectus elit, pulvinar et magna vel, accumsan posuere purus. Vivamus tempus bibendum ex vitae fringilla. Pellentesque dignissim hendrerit ex, nec egestas sapien sollicitudin a. Curabitur non purus quis tortor commodo sagittis eget quis turpis. Etiam id laoreet urna. Aliquam a ultrices lectus. In vehicula magna vel ex elementum rutrum. Aenean vitae lorem massa. Integer vel malesuada nisl. Vivamus mollis ante eu neque dapibus, efficitur aliquet ex pharetra. Aliquam viverra ultricies purus quis commodo. Mauris pharetra est ut nisl imperdiet pellentesque. Ut a lorem lorem.</p>",
     "status": "TODO",
-    "priority": 4
+    "priority": 2
   },
   {
     "id": "5",

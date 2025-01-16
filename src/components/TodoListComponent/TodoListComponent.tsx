@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Todo, Todos } from "../../models/Todo";
+import { Todo, TodoList } from "../../models/Todo";
+import { DraggableItemComponent } from "../DraggableItemComponent/DraggableItemComponent";
 import { TodoListItemComponent } from "../TodoListItemComponent/TodoListItemComponent";
 
 export type TodoListComponentProps = {
   title: string;
-  todos: Todos;
+  todos: TodoList;
   onDelete: (id: string) => void;
   onMove: (todo: Todo) => void;
   emptyState?: JSX.Element;
@@ -27,21 +28,29 @@ export const TodoListComponent = ({
     }
   }, [todos]);
 
-  const mapToTodoListItem = (todo: Todo, i: number) => (
-    <TodoListItemComponent
-      skipAnimation={skipAnimation}
-      key={i}
-      todo={todo}
-      onMove={onMove}
-      onDelete={onDelete}
-    />
+  const mapToTodoListItem = (todo: Todo) => (
+    <DraggableItemComponent key={todo.id} itemId={todo.id}>
+      <TodoListItemComponent
+        skipAnimation={skipAnimation}
+        key={todo.id}
+        todo={todo}
+        onMove={onMove}
+        onDelete={onDelete}
+      />
+    </DraggableItemComponent>
   );
+
+  const sortByPriority = (a: Todo, b: Todo) => {
+    return a.priority > b.priority ? 1 : -1;
+  };
 
   return (
     <>
       <h3>{title}</h3>
       {todos.length || !emptyState ? (
-        <div className="todo-list">{todos.map(mapToTodoListItem)}</div>
+        <div className="todo-list">
+          {todos.sort(sortByPriority).map(mapToTodoListItem)}
+        </div>
       ) : (
         emptyState
       )}

@@ -4,7 +4,7 @@ import { TodoListPageContainerComponent } from "./components/TodoListPageContain
 function App() {
   return (
     <>
-      <PageHeaderComponent title="React example todo list" />
+      <PageHeaderComponent title="Todo List (React)" />
       <div className="content-area max-w-screen-2xl mx-auto">
         <TodoListPageContainerComponent />
       </div>

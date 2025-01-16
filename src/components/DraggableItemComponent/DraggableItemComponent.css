@@ -1,0 +1,27 @@
+.dragging {
+  opacity: 0.2;
+}
+
+.draggable-item::after,
+.draggable-item::before {
+  content: "";
+  width: 95%;
+  height: 0px;
+  transition: ease-in-out 0.15s;
+}
+
+.draggable-item:first-child.draggable-item.drop-target-preview::after {
+  content: unset;
+}
+
+.draggable-item.drop-target-preview-bottom::after,
+.draggable-item.drop-target-preview-top::before {
+  content: "";
+  width: 95%;
+  height: 6px;
+  display: flex;
+  border-radius: 8px;
+  background-color: #dcdcdc;
+  margin-left: auto;
+  margin-right: auto;
+}
