@@ -36,17 +36,35 @@ export const TodoListPageContainerComponent = () => {
   }, []);
 
   const moveToDone = (todo: Todo) => {
-    setPendingTodos(pendingTodos.filter((item) => item.id !== todo.id));
-    setDoneTodos([...doneTodos, { ...todo, status: TodoStatus.DONE }]);
+    setPendingTodos(
+      recalculatePriorities(pendingTodos.filter((item) => item.id !== todo.id))
+    );
+    setDoneTodos(
+      recalculatePriorities([
+        ...doneTodos,
+        { ...todo, status: TodoStatus.DONE },
+      ])
+    );
   };
   const moveToPending = (todo: Todo) => {
-    setDoneTodos(doneTodos.filter((item) => item.id !== todo.id));
-    setPendingTodos([...pendingTodos, { ...todo, status: TodoStatus.TODO }]);
+    setDoneTodos(
+      recalculatePriorities(doneTodos.filter((item) => item.id !== todo.id))
+    );
+    setPendingTodos(
+      recalculatePriorities([
+        ...pendingTodos,
+        { ...todo, status: TodoStatus.TODO },
+      ])
+    );
   };
 
   const deleteTodo = (id: string) => {
-    setPendingTodos(pendingTodos.filter((item) => item.id !== id));
-    setDoneTodos(doneTodos.filter((item) => item.id !== id));
+    setPendingTodos(
+      recalculatePriorities(pendingTodos.filter((item) => item.id !== id))
+    );
+    setDoneTodos(
+      recalculatePriorities(doneTodos.filter((item) => item.id !== id))
+    );
   };
 
   const reorderTodos = (data: DropData) => {
@@ -72,7 +90,11 @@ export const TodoListPageContainerComponent = () => {
     const result = list.filter((item) => item.id !== fromTodo.id);
     const targetIndex = result.findIndex((item) => item.id === targetId);
     result.splice(targetIndex + offset, 0, fromTodo);
-    return result.map((item, i) => ({ ...item, priority: i }));
+    return recalculatePriorities(result);
+  };
+
+  const recalculatePriorities = (items: TodoList) => {
+    return items.map((item, i) => ({ ...item, priority: i }));
   };
 
   const createTodo = (ev: SyntheticEvent) => {
@@ -87,7 +109,7 @@ export const TodoListPageContainerComponent = () => {
         title: formData.todoName,
         status: TodoStatus.TODO,
         details: "",
-        priority: 0,
+        priority: pendingTodos.length,
       },
     ]);
     setFormData({ todoName: "" });

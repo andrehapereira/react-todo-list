@@ -1,6 +1,6 @@
 import "./TodoListItemComponent.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckmarkIcon } from "../../icons/CheckmarkIcon";
 import { DeleteBucketIcon } from "../../icons/DeleteBucketIcon";
 import { UndoIcon } from "../../icons/UndoIcon";
@@ -22,20 +22,20 @@ export const TodoListItemComponent = ({
 }: TodoListItemComponentProps) => {
   const [animationClass, setAnimationClass] = useState("");
 
-  // useEffect(() => {
-  //   if (skipAnimation) {
-  //     return;
-  //   }
-  //   animate(
-  //     todo.status === TodoStatus.DONE ? "slide-in-left" : "slide-in-right"
-  //   );
-  // }, []);
+  useEffect(() => {
+    if (skipAnimation) {
+      return;
+    }
+    animate(
+      todo.status === TodoStatus.DONE ? "slide-in-left" : "slide-in-right"
+    );
+  }, []);
 
   const animate = (cls: TodoAnimation) => {
     return new Promise((resolve) => {
       setAnimationClass(cls);
       setTimeout(() => {
-        //fake 1s time for the css animation to complete
+        //fake 600ms time for the css animation to complete
         setAnimationClass("");
         resolve(true);
       }, 600);
