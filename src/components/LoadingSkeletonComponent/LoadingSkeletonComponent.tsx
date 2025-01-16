@@ -1,4 +1,4 @@
-export const LoadingSkeleton = () => {
+export const LoadingSkeletonComponent = () => {
   return (
     <div className="flex flex-col lg:flex-row p-4 gap-8 animate-pulse">
       <div role="status" className="flex-1">

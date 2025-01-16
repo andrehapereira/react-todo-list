@@ -1,21 +1,21 @@
 // export type TodoListProps = {};
 
 import { SyntheticEvent, useContext, useEffect, useState } from "react";
-import { HeartEyesIcon } from "../../icons/HeartEyesIcon";
-import { SadFaceIcon } from "../../icons/SadFaceIcon";
-import { Todo, TodoStatus, Todos } from "../../models/Todo";
-import { ServicesContext } from "../../services/ServicesProvider";
-import { EmptyStateComponent } from "../EmptyState/EmptyState";
-import { LoadingSkeleton } from "../LoadingSkeleton/LoadingSkeleton";
-import { TodoList } from "../TodoList/TodoList";
 import { v4 as generateId } from "uuid";
-import { ListIcon } from "../../icons/ListIcon";
+import { HeartEyesIcon } from "../../icons/HeartEyesIcon";
+import { ListIconIcon } from "../../icons/ListIconIcon";
+import { SadFaceIcon } from "../../icons/SadFaceIcon";
+import { Todo, TodoList, TodoStatus } from "../../models/Todo";
+import { ServicesContext } from "../../services/ServicesProvider";
+import { EmptyStateComponent } from "../EmptyStateComponent/EmptyStateComponent";
+import { LoadingSkeletonComponent } from "../LoadingSkeletonComponent/LoadingSkeletonComponent";
+import { TodoListComponent } from "../TodoListComponent/TodoListComponent";
 
-export const TodoListPageContainer = () => {
+export const TodoListPageContainerComponent = () => {
   const { todosService } = useContext(ServicesContext);
   const [loading, setLoading] = useState<boolean>(true);
-  const [doneTodos, setDoneTodos] = useState<Todos>([]);
-  const [pendingTodos, setPendingTodos] = useState<Todos>([]);
+  const [doneTodos, setDoneTodos] = useState<TodoList>([]);
+  const [pendingTodos, setPendingTodos] = useState<TodoList>([]);
   const [formData, setFormData] = useState<{ todoName: string }>({
     todoName: "",
   });
@@ -88,7 +88,7 @@ export const TodoListPageContainer = () => {
   return (
     <section>
       {loading ? (
-        <LoadingSkeleton></LoadingSkeleton>
+        <LoadingSkeletonComponent />
       ) : (
         <>
           <form
@@ -112,14 +112,14 @@ export const TodoListPageContainer = () => {
           <div className="flex flex-col lg:flex-row p-4 gap-8">
             {listsEmpty() ? (
               <EmptyStateComponent
-                icon={<ListIcon width="3rem" height="3rem" />}
+                icon={<ListIconIcon width="3rem" height="3rem" />}
                 title="Let's get working!"
                 description="Add some tasks via the above form and get some work done!"
               ></EmptyStateComponent>
             ) : (
               <>
                 <div className="flex-1">
-                  <TodoList
+                  <TodoListComponent
                     title="Pending:"
                     todos={pendingTodos}
                     onMove={moveToDone}
@@ -128,7 +128,7 @@ export const TodoListPageContainer = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <TodoList
+                  <TodoListComponent
                     title="Done:"
                     todos={doneTodos}
                     onMove={moveToPending}

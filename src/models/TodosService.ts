@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
-import { Todos } from "./Todo";
+import { TodoList } from "./Todo";
 
 export interface TodosService {
-  getTodos: () => Promise<AxiosResponse<Todos>>;
+  getTodos: () => Promise<AxiosResponse<TodoList>>;
 }

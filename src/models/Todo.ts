@@ -11,7 +11,7 @@ export interface Todo {
   priority: number;
 }
 
-export type Todos = Todo[];
+export type TodoList = Todo[];
 
 export type TodoAnimation =
   | "slide-right"

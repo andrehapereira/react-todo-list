@@ -1,25 +1,25 @@
-import "./TodoListItem.css";
+import "./TodoListItemComponent.css";
 
 import { useEffect, useState } from "react";
-import { Checkmark } from '../../icons/Checkmark';
-import { DeleteBucket } from "../../icons/DeleteBucket";
-import { Undo } from "../../icons/Undo";
+import { CheckmarkIcon } from "../../icons/CheckmarkIcon";
+import { DeleteBucketIcon } from "../../icons/DeleteBucketIcon";
+import { UndoIcon } from "../../icons/UndoIcon";
 import { Todo, TodoAnimation, TodoConfig, TodoStatus } from "../../models/Todo";
 import { ActionItem } from "./ActionButton/ActionButton";
 
-export interface TodoListItemProps {
+export interface TodoListItemComponentProps {
   todo: Todo;
   onMove: (todo: Todo) => void;
   onDelete: (id: string) => void;
   skipAnimation?: boolean;
 }
 
-export const TodoListItem = ({
+export const TodoListItemComponent = ({
   todo,
   onMove,
   onDelete,
   skipAnimation = false,
-}: TodoListItemProps) => {
+}: TodoListItemComponentProps) => {
   const [animationClass, setAnimationClass] = useState("");
 
   useEffect(() => {
@@ -31,9 +31,7 @@ export const TodoListItem = ({
     );
   }, []);
 
-  const animate = (
-    cls: TodoAnimation
-  ) => {
+  const animate = (cls: TodoAnimation) => {
     return new Promise((resolve) => {
       setAnimationClass(cls);
       setTimeout(() => {
@@ -46,18 +44,18 @@ export const TodoListItem = ({
 
   const todoConfig: TodoConfig = {
     [TodoStatus.TODO]: {
-      variant: 'success',
+      variant: "success",
       title: `Move ${todo.title} to done`,
-      animation: 'slide-right',
-      icon: <Checkmark/>
+      animation: "slide-right",
+      icon: <CheckmarkIcon />,
     },
     [TodoStatus.DONE]: {
-      variant: 'dark',
+      variant: "dark",
       title: `Move ${todo.title} back to todo`,
-      animation: 'slide-left',
-      icon: <Undo/>
-    }
-  }
+      animation: "slide-left",
+      icon: <UndoIcon />,
+    },
+  };
 
   return (
     <div
@@ -87,7 +85,7 @@ export const TodoListItem = ({
           title={`Delete ${todo.title}`}
           action={() => onDelete(todo.id)}
         >
-          <DeleteBucket/>
+          <DeleteBucketIcon />
         </ActionItem>
       </div>
     </div>

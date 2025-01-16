@@ -1,19 +1,30 @@
-import { Github } from "../../icons/Github";
-import { LinkedIn } from "../../icons/LinkedIn";
-import "./PageHeader.css";
+import { GithubIcon } from "../../icons/GithubIcon";
+import { LinkedInIcon } from "../../icons/LinkedInIcon";
+import "./PageHeaderComponent.css";
 
-export type PageHeaderProps = {
+export type PageHeaderComponentProps = {
   title: string;
   background?: string;
 };
 
-export const PageHeader = ({ title, background }: PageHeaderProps) => {
+export const PageHeaderComponent = ({
+  title,
+  background,
+}: PageHeaderComponentProps) => {
   const bg = background ?? "https://picsum.photos/1200/300";
   return (
     <>
       <section className="relative w-full">
-        <div className="background-container w-full h-page-header animate-pulse bg-gray-300">
-          <img className="w-full" src={bg} alt={title} />
+        <div className="background-container w-full h-page-header bg-gray-300">
+          <img
+            className="w-full"
+            src={bg}
+            alt={title}
+            onLoad={(ef) => {
+              ef.currentTarget.classList.add("fade-in");
+            }}
+            onError={(e) => e.currentTarget.classList.add("hidden")}
+          />
         </div>
         <div className="top-0 absolute header-content w-full h-full">
           <div className="mx-auto max-w-screen-2xl relative h-full">
@@ -25,14 +36,14 @@ export const PageHeader = ({ title, background }: PageHeaderProps) => {
                   href="https://github.com/andrehapereira"
                   target="_blank"
                 >
-                  <Github />
+                  <GithubIcon />
                 </a>
                 <a
                   className="text-black ms-3"
                   href="https://www.linkedin.com/in/andrehapereira/"
                   target="_blank"
                 >
-                  <LinkedIn />
+                  <LinkedInIcon />
                 </a>
               </div>
             </div>

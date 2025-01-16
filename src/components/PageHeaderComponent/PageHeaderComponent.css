@@ -1,0 +1,33 @@
+section .background-container {
+  opacity: 0.4;
+  overflow: hidden;
+}
+section .background-container::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100px;
+  bottom: 0;
+  background: linear-gradient(transparent, white);
+  position: absolute;
+}
+
+section .background-container img {
+  object-fit: cover;
+  height: 100%;
+}
+
+section .background-container img.fade-in {
+  opacity: 0;
+  animation: fadeIn ease 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
