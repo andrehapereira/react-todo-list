@@ -28,7 +28,7 @@ export const PageHeaderComponent = ({
         </div>
         <div className="top-0 absolute header-content w-full h-full">
           <div className="mx-auto max-w-screen-2xl relative h-full">
-            <h1 className="absolute bottom-0 ps-5"> {title}</h1>
+            <h1 className="absolute bottom-0 ps-5">{title}</h1>
             <div className="absolute top-8 sm:top-auto sm:bottom-6 right-4">
               <div className="flex items-center">
                 <a
